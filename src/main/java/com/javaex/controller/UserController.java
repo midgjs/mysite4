@@ -17,7 +17,20 @@ public class UserController {
 	// 필드
 	@Autowired
 	UserService userService;
+	
 
+	
+	//로그아웃
+	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session) {
+		System.out.println("UserController > logout()");
+		
+		/* 세션 삭제*/
+		session.removeAttribute("authUser");
+		
+		return "redirect:/main";
+	}
+	
 	//로그인
 	@RequestMapping(value = "/user/login", method = { RequestMethod.GET, RequestMethod.POST })
 	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
