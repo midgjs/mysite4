@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +19,22 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-
+	//수정 폼
+	@RequestMapping(value = "/user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modifyForm(HttpSession session, Model model) {
+		System.out.println("UserController > modifyForm()");
+		
+		//세션 불러오기(no)
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		int no = authUser.getNo();
+		
+		UserVo userVo = userService.modifyUser(no);
+		
+		//어트리뷰트에 userVo담아서 보내기
+		model.addAttribute(userVo);
+		
+		return "user/modifyForm";
+	}
 	
 	//로그아웃
 	@RequestMapping(value = "/user/logout", method = { RequestMethod.GET, RequestMethod.POST })

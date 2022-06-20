@@ -18,6 +18,15 @@ public class UserDao {
 	
 	//메소드 일반
 	
+	//회원정보 가져오기(수정폼)
+	public UserVo modifyUser(int no) {
+		System.out.println("UserDao.modifyUser()");
+		
+		UserVo userVo = sqlSession.selectOne("user.modifyUser", no);
+		
+		return userVo;
+	}
+	
 	//회원정보 가져오기(로그인)
 	public UserVo getUser(UserVo userVo) {
 		System.out.println("UserDao.getUser()");

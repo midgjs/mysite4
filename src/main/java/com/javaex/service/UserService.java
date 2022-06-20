@@ -19,6 +19,15 @@ public class UserService {
 	
 	//메소드 일반
 	
+	//수정폼 
+	public UserVo modifyUser(int no) {
+		System.out.println("UserService.modifyUser()");
+		
+		UserVo userVo = userDao.modifyUser(no);
+		
+		return userVo;
+	}
+	
 	//로그인
 	public UserVo login(UserVo userVo) {
 		System.out.println("UserService.login()");
