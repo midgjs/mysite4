@@ -19,6 +19,17 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	//수정
+	@RequestMapping(value = "/user/modify", method = { RequestMethod.GET, RequestMethod.POST })
+	public String modify(@ModelAttribute UserVo userVo) {
+		System.out.println(("UserController > modify"));
+		
+		int count = userService.update(userVo);
+		System.out.println("UserController: " + count);
+		
+		return "redirect:/main";
+	}
+	
 	//수정 폼
 	@RequestMapping(value = "/user/modifyForm", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyForm(HttpSession session, Model model) {
