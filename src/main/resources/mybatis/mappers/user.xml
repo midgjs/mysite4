@@ -16,7 +16,7 @@
 	
 	
 	<!-- 회원정보 가져오기(수정폼) -->
-	<select id="modifyUser" parameterType="int" resultType="com.javaex.vo.UserVo">
+	<select id="modifyUser" parameterType="com.javaex.vo.UserVo" resultType="com.javaex.vo.UserVo">
 		<![CDATA[
 			select  no,
 					id,

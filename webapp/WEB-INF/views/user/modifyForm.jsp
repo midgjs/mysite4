@@ -98,12 +98,22 @@
 							<div class="form-group">
 								<span class="form-text">성별</span> 
 								
-								<label for="rdo-male">남</label> 
-								<input type="radio" id="rdo-male" name="gender" value="male" > 
-								
-								<label for="rdo-female">여</label> 
-								<input type="radio" id="rdo-female" name="gender" value="female" > 
+								<c:if test="${userVo.gender == 'male' }">
+									<label for="rdo-male">남</label> 
+									<input type="radio" id="rdo-male" name="gender" value="male" checked="checked"> 
+									
+									<label for="rdo-female">여</label> 
+									<input type="radio" id="rdo-female" name="gender" value="female" > 
+								</c:if>
 	
+								<c:if test="${userVo.gender == 'female' }">
+									<label for="rdo-male">남</label> 
+									<input type="radio" id="rdo-male" name="gender" value="male" > 
+									
+									<label for="rdo-female">여</label> 
+									<input type="radio" id="rdo-female" name="gender" value="female" checked="checked" > 
+								</c:if>
+								
 							</div>
 	
 							<!-- 버튼영역 -->
