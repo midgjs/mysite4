@@ -35,7 +35,14 @@ public class GuestbookService {
 		return count;
 	}
 	
-	
+	//방명록 삭제
+	public int gDelete(GuestbookVo gVo) {
+		System.out.println("gService>gDelete()");
+		
+		int count = guestbookDao.gDelete(gVo);
+		
+		return count;
+	}	
 	
 	
 	
