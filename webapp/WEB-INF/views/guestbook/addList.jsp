@@ -88,7 +88,7 @@
 							<td><a href="${pageContext.request.contextPath}/guestbook/deleteForm?no=${gList.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+							<td colspan=4 class="text-left">${gList.content}</td>
 						</tr>
 					</table>
 					</c:forEach>
