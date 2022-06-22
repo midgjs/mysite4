@@ -20,6 +20,7 @@ public class BoardController {
 	private BoardService boardService;
 	
 	//메소드 일반
+	//리스트
 	@RequestMapping(value = "/list", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(Model model) {
 		System.out.println("bController > list()");
@@ -33,7 +34,13 @@ public class BoardController {
 		return "board/list";
 	}
 	
-	
+	//글쓰기 폼
+	@RequestMapping(value= "/writeForm", method= {RequestMethod.GET, RequestMethod.POST})
+	public String writeForm() {
+		System.out.println("bController > writeForm()");
+		
+		return "writeForm";
+	}
 	
 	
 }
