@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="board">
+
+	<resultMap id="resultMapBoardVo" type="com.javaex.vo.BoardVo">
+		<result column="reg_date" property="regDate"/>
+		<result column="user_no" property="userNo"/>
+	</resultMap>
+
+	<!-- b리스트 가져오기 -->
+	<select id="getbList" resultMap="resultMapBoardVo">
+		<![CDATA[
+			select  b.no,
+					b.title,
+					b.content,
+					b.hit,
+					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date,
+					b.user_no,
+					u.name
+			from board b, users u
+			where b.user_no = u.no
+			order by reg_date desc
+		]]>
+	</select>	
+
+
+
+
+
+
+
+</mapper>

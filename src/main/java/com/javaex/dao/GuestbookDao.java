@@ -11,8 +11,12 @@ import com.javaex.vo.GuestbookVo;
 @Repository
 public class GuestbookDao {
 	
+	//필드
 	@Autowired
 	private SqlSession sqlSession;
+	
+	//생성자 - 디폴트
+	//메소드 일반
 	
 	//방명록 전체가져오기
 	public List<GuestbookVo> getgList() {
