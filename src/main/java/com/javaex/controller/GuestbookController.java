@@ -36,7 +36,7 @@ public class GuestbookController {
 		return "guestbook/addList";
 	}
 	
-	//add (@ModelAttribute 사용)
+	//add
 	@RequestMapping(value = "/add", method = { RequestMethod.GET, RequestMethod.POST })
 	public String add(GuestbookVo gVo) {
 		System.out.println("gController > add()");
