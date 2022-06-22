@@ -27,4 +27,21 @@ public class BoardService {
 		
 	}
 	
+	//게시글 등록
+	public int write(BoardVo boardVo) {
+		System.out.println("bService>b.write()");
+		
+		int count = boardDao.write(boardVo);
+		
+		return count;
+	}
+	
+	//게시글 읽기
+	public BoardVo getBoard(int no) {
+		System.out.println("bservice > getboard()");
+		
+		BoardVo boardVo = boardDao.getBoard(no);
+		
+		return boardVo;
+	}
 }

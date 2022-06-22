@@ -26,4 +26,22 @@ public class BoardDao {
 		return bList;
 	}
 	
+	//글쓰기
+	public int write(BoardVo boardVo) {
+		System.out.println("BoardDao>write()");
+		
+		int count = sqlSession.insert("board.write", boardVo);
+		
+		return count;
+	}
+	
+	//게시글 정보 가져오기
+	public BoardVo getBoard(int no) {
+		System.out.println("bDao>getboard()");
+		
+		BoardVo boardVo = sqlSession.selectOne("board.getBoard", no);
+		System.out.println(boardVo);
+		
+		return boardVo;
+	}
 }

@@ -24,10 +24,35 @@
 		]]>
 	</select>	
 
-
-
-
-
+	<!-- 글쓰기 -->
+	<insert id="write" parameterType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			insert into board
+			values (seq_board_no.nextval,
+					#{title},
+					#{content},
+					0,
+					sysdate,
+					#{userNo}
+					)
+		]]>
+	</insert>
+	
+	<!-- 게시글 읽기 -->
+	<select id="getBoard" parameterType="com.javaex.vo.BoardVo" resultMap = "resultMapBoardVo">
+		<![CDATA[
+			select  b.no,
+					b.title,
+					u.name,
+					b.hit,
+					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date,
+					b.content,
+					b.user_no
+			from board b, users u
+			where b.user_no = u.no
+			and b.no = #{no}
+		]]>
+	</select>
 
 
 </mapper>
