@@ -20,6 +20,45 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	//로그인
+	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
+	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
+		System.out.println("UserController>login()");
+		
+		UserVo authUser = userService.login(userVo);
+		
+		/* 세션에 저장 */
+		if(authUser != null) { //로그인성공
+			System.out.println("로그인 성공");
+			session.setAttribute("authUser", authUser);
+			return "redirect:/main";
+			
+		}else {  //로그인실패
+			System.out.println("로그인 실패");
+			return "redirect:/user/loginForm?result=fail";
+		}
+		
+	}
+	
+	//로그아웃
+	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
+	public String logout(HttpSession session) {
+		System.out.println("UserController > logout()");
+		
+		/* 세션 삭제*/
+		session.removeAttribute("authUser");
+		
+		return "redirect:/main";
+	}
+	
+	// 로그인폼
+	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
+	public String loginForm() {
+		System.out.println("UserController>loginForm()");
+
+		return "user/loginForm";
+	}
+		
 	//수정
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modify(@ModelAttribute UserVo userVo) {
@@ -48,46 +87,6 @@ public class UserController {
 		return "user/modifyForm";
 	}
 	
-	//로그아웃
-	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })
-	public String logout(HttpSession session) {
-		System.out.println("UserController > logout()");
-		
-		/* 세션 삭제*/
-		session.removeAttribute("authUser");
-		
-		return "redirect:/main";
-	}
-	
-	//로그인
-	@RequestMapping(value = "/login", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
-		System.out.println("UserController>login()");
-		
-		UserVo authUser = userService.login(userVo);
-		
-		/* 세션에 저장 */
-		if(authUser != null) { //로그인성공
-			System.out.println("로그인 성공");
-			session.setAttribute("authUser", authUser);
-			return "redirect:/main";
-			
-		}else {  //로그인실패
-			System.out.println("로그인 실패");
-			return "redirect:/user/loginForm?result=fail";
-		}
-		
-	}
-	
-	
-	// 로그인폼
-	@RequestMapping(value = "/loginForm", method = { RequestMethod.GET, RequestMethod.POST })
-	public String loginForm() {
-		System.out.println("UserController>loginForm()");
-
-		return "user/loginForm";
-	}
-
 	// 회원가입
 	@RequestMapping(value = "/join", method = { RequestMethod.GET, RequestMethod.POST })
 	public String join(@ModelAttribute UserVo userVo) {
@@ -106,4 +105,6 @@ public class UserController {
 
 		return "user/joinForm";
 	}
+
+
 }

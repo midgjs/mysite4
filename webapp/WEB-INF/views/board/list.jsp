@@ -46,7 +46,7 @@
 	
 				<div id="board">
 					<div id="list">
-						<form action="read" method="get">
+						<form action="${pageContext.request.contextPath}/board/search" method="get">
 							<div class="form-group text-right">
 								<input type="text">
 								<button type="submit" id=btn_search>검색</button>
@@ -126,7 +126,7 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
+						<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>
 					
 					</div>
 					<!-- //list -->

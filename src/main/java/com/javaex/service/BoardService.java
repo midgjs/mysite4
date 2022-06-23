@@ -17,14 +17,33 @@ public class BoardService {
 	
 	//메소드 일반
 	
-	//리스트
+	//리스트(리스트만)
 	public List<BoardVo> getbList() {
 		System.out.println("bService > getbList()");
 		
-		List<BoardVo> bList = boardDao.getbList();
+		List<BoardVo> bList = boardDao.selectList();
 		
 		return bList;
 		
+	}
+	
+	//리스트2?
+	public List<BoardVo> getbList2(String keyword) {
+		System.out.println("bService > getbList2()");
+		System.out.println(keyword);
+		
+		List<BoardVo> bList = boardDao.selectList2(keyword);
+		
+		return bList;
+	}
+	
+	//리스트(리스트+검색)
+	public List<BoardVo> getbList3(String keyword) {
+		System.out.println("bService > getbList3()");
+		
+		List<BoardVo> bList = boardDao.selectList3(keyword);
+		
+		return bList;
 	}
 	
 	//게시글 등록
@@ -44,4 +63,10 @@ public class BoardService {
 		
 		return boardVo;
 	}
+	
+
+	
+	
+	
+	
 }

@@ -17,13 +17,34 @@ public class BoardDao {
 	
 	//메소드 일반
 	
-	//게시판 전체가져오기
-	public List<BoardVo> getbList() {
+	//게시판 전체가져오기(리스트만)
+	public List<BoardVo> selectList() {
 		System.out.println("BoardDao > getbList()");
 		
-		List<BoardVo> bList  = sqlSession.selectList("board.getbList");
+		List<BoardVo> bList  = sqlSession.selectList("board.selectList");
+		System.out.println(bList);
+		
+		return bList;
+	}
+	
+	//게시판 + 검색
+	public List<BoardVo> selectList3(String keyword) {
+		System.out.println("BoardDao > selectList3()");
+		
+		List<BoardVo> bList = sqlSession.selectList("board.selectList3", keyword);
+		
+		return bList;
+	}
+	
+	//게시판2?
+	public List<BoardVo> selectList2(String keyword) {
+		System.out.println("bDao > selectList2()");
+		System.out.println(keyword);
+		
+		List<BoardVo> bList = sqlSession.selectList("board.selectList2", keyword);
 		System.out.println(bList);
 		return bList;
+		
 	}
 	
 	//글쓰기
@@ -35,7 +56,7 @@ public class BoardDao {
 		return count;
 	}
 	
-	//게시글 정보 가져오기
+	//게시판 읽기
 	public BoardVo getBoard(int no) {
 		System.out.println("bDao>getboard()");
 		
@@ -44,4 +65,5 @@ public class BoardDao {
 		
 		return boardVo;
 	}
+	
 }

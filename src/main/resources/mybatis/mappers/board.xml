@@ -53,6 +53,27 @@
 			and b.no = #{no}
 		]]>
 	</select>
-
+	
+	<!-- 검색 -->
+	<select id="getbList2" parameterType="String" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select  b.no,
+					b.title,
+					b.content,
+					b.hit,
+					b.reg_date
+					b.user_no
+					u.name
+			from board b, users u
+			where b.user_no = u.no
+			and title like '%' || #{value} || '%'
+			order by no desc
+		]]>
+	</select>
+	
+	
+	
+	
+	
 
 </mapper>
