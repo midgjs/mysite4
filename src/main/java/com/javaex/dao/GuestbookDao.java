@@ -36,6 +36,13 @@ public class GuestbookDao {
 		return count;
 	}
 	
+	//방명록 저장후 등록한 데이터 가져오기(ajax)
+	public int getGuest(int no) {
+		System.out.println("gDao > getGuest()");
+		
+		return sqlSession.selectOne("guestbook.getGuest", no);
+	}
+	
 	//방명록 삭제
 	public int gDelete(GuestbookVo gVo) {
 		System.out.println("gDao > gDelete()");
