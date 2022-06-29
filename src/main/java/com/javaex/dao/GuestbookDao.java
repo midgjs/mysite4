@@ -10,45 +10,47 @@ import com.javaex.vo.GuestbookVo;
 
 @Repository
 public class GuestbookDao {
-	
-	//필드
+
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//생성자 - 디폴트
-	//메소드 일반
 	
-	//방명록 전체가져오기
-	public List<GuestbookVo> getgList() {
-		System.out.println("GuestbookDao > getgList()");
+	//전체리스트 가져오기
+	public List<GuestbookVo> selectList(){
+		System.out.println("GuestbookDao>selectList()");
 		
-		List<GuestbookVo> gList  = sqlSession.selectList("guestbook.getgList");
-		System.out.println(gList);
-		return gList;
+		List<GuestbookVo> guestbookList = sqlSession.selectList("guestbook.selectList");
+		
+		return guestbookList;
+		
 	}
 	
-	//방명록 추가
-	public int gInsert(GuestbookVo gVo) {
-		System.out.println("gDao > gInsert()");
+	
+	//방명록 저장(ajax)
+	public int insertGuest(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao>insertGuest()");
 		
-		int count = sqlSession.insert("guestbook.gInsert", gVo);
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
 		
 		return count;
 	}
 	
-	//방명록 저장후 등록한 데이터 가져오기(ajax)
-	public int getGuest(int no) {
-		System.out.println("gDao > getGuest()");
+	//방명록 저장후 등록한 데이타 가져오기(ajax)
+	public GuestbookVo getGuest(int no) {
+		System.out.println("GuestbookDao>getGuest()");
 		
 		return sqlSession.selectOne("guestbook.getGuest", no);
 	}
 	
+	
 	//방명록 삭제
-	public int gDelete(GuestbookVo gVo) {
-		System.out.println("gDao > gDelete()");
+	public int guestDelete(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao>guestDelete()");
 		
-		int count = sqlSession.delete("guestbook.gDelete", gVo);
-		
-		return count;
+		return sqlSession.delete("guestbook.delete", guestbookVo);
 	}
+	
+	
+	
+	
 }
