@@ -26,9 +26,9 @@ public class GalleryDao {
 	
 	//업로드
 	public int save(GalleryVo galleryVo) {
-		System.out.println("fileDao > save()");
+		System.out.println("GallDao > save()");
 		
-		return sqlSession.insert("file.insertFile", galleryVo);
+		return sqlSession.insert("gallery.galleryInsert", galleryVo);
 	}
 	
 	

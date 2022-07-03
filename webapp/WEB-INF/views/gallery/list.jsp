@@ -47,20 +47,17 @@
 
 			<div id="gallery">
 				<div id="list">
-					<c:if test="${authUser != null }">
-						<form action="${pageContext.request.contextPath}/gallery/upload" method="post" enctype="multipart/form-data">
+					<c:if test="${authUser != null}">
 							<button id="btnImgUpload">이미지올리기</button>
-						</form>
 					</c:if>
 						<div class="clear"></div>
 
-					</form>
 					<ul id="viewArea">
 						
 						<!-- 이미지반복영역 -->
 							<li>
 								<div class="view" >
-									<img class="imgItem" src="${pageContext.request.contextPath }/upload/${requestScope.saveName }">
+									<!--  --><img class="imgItem" src="${pageContext.request.contextPath }/------/${requestScope.saveName }">
 									<div class="imgWriter">작성자: <strong>${sessionScope.authUser.name}</strong></div>
 								</div>
 							</li>
@@ -93,15 +90,15 @@
 					<h4 class="modal-title">이미지등록</h4>
 				</div>
 				
-				<form method="" action="" >
+				<form action="${pageContext.request.contextPath}/gallery/upload" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
 						<div class="form-group">
 							<label class="form-text">글작성</label>
-							<input id="addModalContent" type="text" name="" value="" >
+							<input id="addModalContent" type="text" name="content" value="" >
 						</div>
 						<div class="form-group">
 							<label class="form-text">이미지선택</label>
-							<input id="file" type="file" name="" value="" >
+							<input id="file" type="file" name="file" value="" >
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -152,7 +149,10 @@
 </body>
 
 <script type="text/javascript">
-
+$('#btnImgUpload').on("click", function(){
+	console.log("이미지 등록");
+	$('#addModal').modal("show");
+});
 
 </script>
 
