@@ -47,9 +47,11 @@
 
 			<div id="gallery">
 				<div id="list">
-					<form action="${pageContext.request.contextPath}/gallery/upload" method="post" enctype="multipart/form-data">
-					
-						<button id="btnImgUpload">이미지올리기</button>
+					<c:if test="${authUser != null }">
+						<form action="${pageContext.request.contextPath}/gallery/upload" method="post" enctype="multipart/form-data">
+							<button id="btnImgUpload">이미지올리기</button>
+						</form>
+					</c:if>
 						<div class="clear"></div>
 
 					</form>
@@ -150,14 +152,6 @@
 </body>
 
 <script type="text/javascript">
-$("#listArea").on("click", ".btnDel", function(){
-	console.log("이미지올리기")
-	
-	
-	
-	
-	
-});
 
 
 </script>
