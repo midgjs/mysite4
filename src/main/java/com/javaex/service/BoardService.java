@@ -64,9 +64,6 @@ public class BoardService {
 		return boardVo;
 	}
 	
-
-	
-	
 	
 	
 }

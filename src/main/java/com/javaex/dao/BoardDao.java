@@ -65,5 +65,4 @@ public class BoardDao {
 		
 		return boardVo;
 	}
-	
 }

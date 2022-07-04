@@ -88,12 +88,39 @@ public class BoardController {
 		//조회수 -> 나중에
 		//게시글 정보가져오기
 		BoardVo boardVo = boardService.getBoard(no);
-		model.addAttribute("BoardVo", boardVo);
+		model.addAttribute("boardVo", boardVo);
 		
 		return "board/read";
 		
 	}
 	
+	//삭제
+	@RequestMapping(value = "/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String delete() {
+		System.out.println("bc > delete()");
+		
+		
+		
+		return "redirect:/board/list";
+	}
+	
+	
+	
+	//수정폼
+	@RequestMapping(value = "/modifyForm", method = {RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(Model model, @RequestParam("no")int no) {
+		System.out.println("boardCon >> modifyForm()");
+		
+		BoardVo boardVo = boardService.getBoard(no);
+		
+		model.addAttribute("boardVo", boardVo);
+		
+		return "board/modifyForm";
+	}
+	
+	
+	
+	//수정
 	
 	
 	

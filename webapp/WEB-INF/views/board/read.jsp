@@ -47,34 +47,36 @@
 				<div id="board">
 					<div id="read">
 						<form action="#" method="get">
+							<input type="hidden" name="no" value="${boardVo.no}">
+							
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">${BoardVo.name }</span>
+								<span class="form-value">${boardVo.name }</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value">${BoardVo.hit }</span>
+								<span class="form-value">${boardVo.hit }</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value">${BoardVo.regDate }</span>
+								<span class="form-value">${boardVo.regDate }</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>
-								<span class="form-value">${BoardVo.title }</span>
+								<span class="form-value">${boardVo.title }</span>
 							</div>
 						
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
-									${BoardVo.content }
+									${boardVo.content }
 								</span>
 							</div>
 							
