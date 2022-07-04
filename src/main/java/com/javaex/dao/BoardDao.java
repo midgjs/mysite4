@@ -51,7 +51,7 @@ public class BoardDao {
 	public int write(BoardVo boardVo) {
 		System.out.println("BoardDao>write()");
 		
-		int count = sqlSession.insert("board.write", boardVo);
+		int count = sqlSession.insert("board.insertBoard", boardVo);
 		
 		return count;
 	}
