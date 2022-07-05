@@ -7,7 +7,43 @@
 		<result column="reg_date" property="regDate"/>
 		<result column="user_no" property="userNo"/>
 	</resultMap>
+	
+	<!-- 페이징 -->
+	<select id="selectList4" parameterType="map" resultType="com.javaex.vo.BoardVo">
+		<![CDATA[
+			select  ort.rn,
+			        ort.no,
+			        ort.title,
+			        ort.content,
+			        ort.hit,
+			        ort.regDate,
+			        ort.userNo,
+			        ort.userName
+			from (select  rownum rn,
+			              ot.no,
+			              ot.title,
+			              ot.content,
+			              ot.hit,
+			              ot.regDate,
+			              ot.userNo,
+			              ot.userName
+			      from (select  b.no,
+			                    b.title,
+			                    b.content,
+			                    b.hit,
+			                    to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') regDate,
+			                    b.user_no userNo,
+			                    u.name userName
+			           from board b, users u
+			           where b.user_no = u.no
+			           order by no desc) ot
+			     )ort
+			where rn>=#{startRnum}
+			and rn<=#{endRnum}
 
+		]]>
+	</select>	
+	
 	<!-- b리스트 가져오기 -->
 	<select id="selectList" resultMap="resultMapBoardVo">
 		<![CDATA[
@@ -15,16 +51,16 @@
 					b.title,
 					b.content,
 					b.hit,
-					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date,
-					b.user_no,
-					u.name
+					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') regDate,
+					b.user_no userNo
+					u.name userName
 			from board b, users u
 			where b.user_no = u.no
 			order by reg_date desc
 		]]>
 	</select>	
 	
-	<!-- 리스트3 -->
+	<!-- 
 	<select id="selectList3" parameterType="String" resultType="com.javaex.vo.BoardVo">
 		<![CDATA[
 			select  b.no,
@@ -48,6 +84,7 @@
 		]]>
 			
 	</select>
+	리스트3 -->
 	
 	<!-- 리스트2 -->
 	<select id="selectList2" parameterType="String" resultType="com.javaex.vo.BoardVo">
@@ -85,11 +122,11 @@
 		<![CDATA[
 			select  b.no,
 					b.title,
-					u.name,
+					b.content,
 					b.hit,
 					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date,
-					b.content,
-					b.user_no
+					b.user_no userNo,
+					u.name
 			from board b, users u
 			where b.user_no = u.no
 			and b.no = #{no}

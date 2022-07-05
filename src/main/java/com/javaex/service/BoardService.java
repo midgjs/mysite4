@@ -16,6 +16,39 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	//메소드 일반
+	//리스트4
+	public List<BoardVo> getbList4(int crtPage) {
+		System.out.println("bService > getbList4()");
+		
+		//////////////////////////////////////
+		// 리스트 가져오기
+		//////////////////////////////////////
+		
+		//페이지당 글갯수
+		int listCnt = 10;
+		System.out.println(crtPage);
+		
+		//현재페이지
+		crtPage = (crtPage > 0) ? crtPage : (crtPage=1);
+		
+		//시작글번호
+		int startRnum = (crtPage-1)*listCnt + 1;
+		
+		//끝글번호
+		int endRnum = (startRnum + listCnt) - 1;
+		
+		List<BoardVo> bList = boardDao.selectList4(startRnum, endRnum);
+		
+		return bList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//리스트(리스트만)
 	public List<BoardVo> getbList() {
@@ -50,9 +83,26 @@ public class BoardService {
 	public int write(BoardVo boardVo) {
 		System.out.println("bService>b.write()");
 		
-		int count = boardDao.write(boardVo);
+		return boardDao.write(boardVo);
 		
-		return count;
+		
+		
+		
+		
+		
+		
+		/*
+		for(int i=1; i<=127; i++){
+			
+			boardVo.setTitle(i+"번째 게시글(제목)입니다.");
+			boardVo.setContent(i+"번째 게시글(내용)입니다.");
+			boardDao.write(boardVo);
+			
+		}
+		
+		
+		return 1;
+		*/
 	}
 	
 	//게시글 읽기
