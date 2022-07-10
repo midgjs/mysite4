@@ -52,7 +52,7 @@
 					b.content,
 					b.hit,
 					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') regDate,
-					b.user_no userNo
+					b.user_no userNo,
 					u.name userName
 			from board b, users u
 			where b.user_no = u.no
@@ -124,9 +124,9 @@
 					b.title,
 					b.content,
 					b.hit,
-					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date,
+					to_char(b.reg_date, 'yyyy-mm-dd hh24:mi:ss') regDate,
 					b.user_no userNo,
-					u.name
+					u.name userName
 			from board b, users u
 			where b.user_no = u.no
 			and b.no = #{no}
