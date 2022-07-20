@@ -34,11 +34,6 @@ public class BoardDao {
 		
 	}
 	
-	
-	
-	
-	
-	
 	//게시판 전체가져오기(리스트만)
 	public List<BoardVo> selectList() {
 		System.out.println("BoardDao > getbList()");

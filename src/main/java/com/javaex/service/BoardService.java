@@ -43,13 +43,6 @@ public class BoardService {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	//리스트(리스트만)
 	public List<BoardVo> getbList() {
 		System.out.println("bService > getbList()");
@@ -114,6 +107,13 @@ public class BoardService {
 		return boardVo;
 	}
 	
+	//수정폼(내용 불러오기)
+	public BoardVo modifyForm(int no) {
+		
+		BoardVo boardVo = boardDao.getBoard(no);
+		
+		return boardVo;
+	}
 	
 	
 }

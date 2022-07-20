@@ -2,6 +2,8 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -118,12 +120,15 @@ public class BoardController {
 	
 	
 	//수정폼
-	@RequestMapping(value = "/modifyForm", method = {RequestMethod.GET, RequestMethod.POST})
-	public String modifyForm(Model model, @RequestParam("no")int no) {
-		System.out.println("boardCon >> modifyForm()");
+	@RequestMapping(value="/modifyForm", method={RequestMethod.GET, RequestMethod.POST})
+	public String modifyForm(@RequestParam("no") int no, Model model, HttpSession session) {
+		System.out.println("board > modifyForm");
 		
-		BoardVo boardVo = boardService.getBoard(no);
+		if (session.getAttribute("authUser") == null) return "board/list";
 		
+		BoardVo boardVo = boardService.modifyForm(no);
+		boardVo.setContent(boardVo.getContent().replace("<br>", "\n"));
+
 		model.addAttribute("boardVo", boardVo);
 		
 		return "board/modifyForm";
